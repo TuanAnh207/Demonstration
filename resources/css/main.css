@@ -1,0 +1,144 @@
+@media all{
+    /* content editable */
+
+    *[contenteditable] { border-radius: 0.25em; min-width: 1em; outline: 0; }
+
+    *[contenteditable] { cursor: pointer; }
+
+    *[contenteditable]:hover, *[contenteditable]:focus, td:hover *[contenteditable], td:focus *[contenteditable], img.hover { background: #DEF; box-shadow: 0 0 1em 0.5em #DEF; }
+
+    span[contenteditable] { display: inline-block; }
+    body{
+        padding: 20px 20px 20px 20px;
+    }
+    div{
+        border: solid 1px #494949;
+        -webkit-print-color-adjust: exact;
+    }
+    table {
+        /*border-spacing: 0;*/
+        font-size: 12px;
+        font-family: "Helvetica Neue", Helvetica, sans-serif
+    }
+    input{
+        border: 0px;
+        border-bottom:1px dotted #000;
+        font-size: 10px;
+    }
+
+    caption {
+        text-align: left;
+        color: silver;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 5px;
+    }
+    /*  Table Customer information & Misc */
+    #general_information{
+        position: relative;
+        height: 138.52px;
+        width: 100%;
+        border: none;
+    }
+    #customer_information{
+        position: absolute;
+        left: 0px;
+        width: 60%;
+        height: 89px;
+        border-collapse: separate; border-spacing: 2px
+    }
+    #misc_information{
+        position: absolute;
+        right: 0px;
+        width: 40%;
+        height: 89px;
+        margin:0px 0px 0px 40px;
+    }
+
+    #misc_information th,#customer_information th{
+        width: 30%;
+        background: #EEE;
+        border-color: #BBB;
+        border-width: 1px; padding: 0.5em; position: relative; text-align: left;  border-radius: 0.25em; border-style: solid;
+    }
+    #misc_information td,#customer_information td{
+        width: 70%;
+        border-color: #DDD;
+        border-width: 1px; padding: 0.5em; position: relative; text-align: left;  border-radius: 0.25em; border-style: solid;
+    }
+    /* table inventory */
+    #inventory {
+        table-layout: fixed;
+        clear: both;
+        width: 100%;
+    }
+
+    #inventory thead {
+        background: SteelBlue;
+        color: white;
+    }
+
+    #inventory th,td {
+        padding: 5px 10px;
+    }
+
+    #inventory tbody tr:nth-child(even) {
+         background: WhiteSmoke;
+     }
+    #inventory tbody tr:hover {
+        background: #4d97ff;
+    }
+    #inventory tbody tr td:nth-child(2) {
+        text-align:center;
+    }
+
+    #inventory tbody tr td:nth-child(3),
+    #inventory tbody tr td:nth-child(4) {
+        text-align: right;
+        font-family: monospace;
+    }
+
+    #inventory tfoot {
+        background: SeaGreen;
+        color: white;
+        text-align: right;
+    }
+
+    #inventory tfoot tr th:last-child {
+        font-family: monospace;
+    }
+
+    .add, .cut
+    {
+        border-width: 1px;
+        display: block;
+        font-size: .8rem;
+        padding: 0.25em 0.5em;
+        float: left;
+        text-align: center;
+        width: 0.6em;
+    }
+
+    .add, .cut
+    {
+        background: #9AF;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        background-image: -moz-linear-gradient(#00ADEE 5%, #0078A5 100%);
+        background-image: -webkit-linear-gradient(#00ADEE 5%, #0078A5 100%);
+        border-radius: 0.5em;
+        border-color: #0076A3;
+        color: #FFF;
+        cursor: pointer;
+        font-weight: bold;
+        text-shadow: 0 -1px 2px rgba(0,0,0,0.333);
+    }
+
+    .cut { opacity: 0;left: -1.5em; margin-left: -32px }
+    .cut { -webkit-transition: opacity 100ms ease-in; }
+
+    #inventory tr:hover .cut { opacity: 1; }
+
+    #action_table{
+        width: 100%;
+    }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Demonstration",
+  "version": "0.0.1",
+  "private": true,
+  "main": "index.html",
+  "window": {
+    "title": "Demonstration",
+    "toolbar": false,
+    "width": 732,
+    "height": 600
+  },
+  "dependencies": {
+  }
+}
