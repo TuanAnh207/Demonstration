@@ -1,0 +1,408 @@
+@media all{
+	div{
+		border: solid 1px #494949;
+		-webkit-print-color-adjust: exact;
+	}
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+		font-size: 12px;
+	}
+    table th,td {
+        padding: 0px 0px;
+    }
+	input{
+		border: 0px; 
+		border-bottom:1px dotted #000;
+		font-size: 10px;
+	}
+	#office{
+		border: 1px dotted;
+	}
+	.c_255_255_210{
+		background-color:#ffffd2;
+	}
+}
+@media screen{
+	/*body{*/
+		/*width: 814px;*/
+		/*padding-left: 60px;*/
+		/*padding-right: 60px;*/
+		/*padding-bottom: 190px;*/
+		/*padding-top: 185px;*/
+		/*		border: 1px dotted ;*/
+	/*}*/
+    #template_body{
+        width: 814px;
+        height: 100%;
+        padding-left: 60px;
+        padding-right: 60px;
+        padding-bottom: 190px;
+        padding-top: 185px;
+        align-content: center;
+        display: inline-block;
+        /*		border: 1px dotted ;*/
+    }
+	.first_tr_td{
+		border-bottom:3px solid #494949;
+		border-right:3px solid #494949;
+		height: 10px;
+	}
+	.first_tr_second_td{
+		border-top:3px solid #494949;
+		border-right:3px dotted #bbb;
+	}
+	.second_td{
+		border-right:3px dotted #bbb;
+	}
+	#container{
+		position:relative;
+		padding: 14.377px 37px 45px 39px;
+		border-top: none;
+	}
+	#header{
+		position: relative;
+		height: 104.64px;
+		border: none;
+		border-bottom: 1px solid;
+	}
+	#title{
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 536px;
+		height: 66px;
+		line-height: 66px;
+		background-color: rgb(0,128,52);
+		text-align:center;
+		font-size:30px;
+		font-style: italic;
+	}
+	#no{
+		position:absolute;
+		top:10px;
+		right:28.302216px;
+		border: none;
+		font-weight: bold;
+	}
+	#PL{
+		position: absolute;
+		bottom: 4px;
+		width: 733px;
+	}
+	#PL_first_tr_td{
+		width:618px;
+		height:34px;
+	}
+	#PL_first_tr_second_td{
+		font-size:25px;
+		font-weight:bold;
+	}
+
+	/*  Customer information */
+	#general_information{
+		position: relative;
+		height: 138.52px;
+		border: none;
+	}
+	#customer_information{
+		position: absolute;
+		bottom: 15px;
+		width: 478px;
+		height: 89px;
+		border: none;
+	}
+	#customer_first_tr_td{
+		width: 76px;
+		height: 17px;
+	}
+	#misc{
+		position: absolute;
+		bottom: 15px;
+		right: 0px;
+		width: 188px;
+		height: 89px;
+		border: none;
+	}
+	#misc_first_tr_td{
+		width: 70px;
+		height: 17px;
+	}
+
+	#detail_information{
+		position: relative;
+		width: 736px;
+	}
+	#detail_information tr td{
+		border-bottom: none;
+		border-right: 1px dotted #494949;
+		border-left: 1px dotted #494949;
+		text-align: center;
+		height: 16px;
+	}
+	#detail_information tr:first-child td{
+		border: 1px dotted #494949;
+	}
+	#cols_qty{
+		width: 78px;
+	}
+	#cols_desc{
+		width: 471px;
+	}
+	#cols_weight{
+		width: 71px;
+	}
+	#cols_total{
+		width: 116px;
+	}
+	#detail_information tr:last-child td{
+		border-bottom: 1px dotted #494949;
+	}
+
+	#total_cost_container{
+		position: relative;
+		height: 48px;
+		border: none;
+	}
+	#total_cost{
+		position: absolute;
+		height: 48px;
+		width: 190px;
+		top: 0px;
+		right: 0px;
+		text-align: center;
+	}
+	#subTotalLabel{
+		width: 71px;
+	}
+
+	#bottom_information{
+		position: relative;
+		top:2px;
+		bottom: 0px;
+		height: 225px;
+		width: 733px;
+		border: none;
+		border-bottom: 1px dotted;
+	}
+	#delivery_information{
+		position: relative;
+		height: 109px;
+		width: 733px;
+		border: none;
+	}
+	#sender_information{
+		position: absolute;
+		bottom: 16px;
+		left: 0px;
+		height: 111px;
+		width: 398px;
+	}
+	#office{
+		position: absolute;
+		bottom: 16px;
+		right: 0px;
+		height: 46px;
+		width: 260px;
+	}
+	#bottom_rectangle{
+		position: absolute;
+		bottom: 34px;
+		width: 733px;
+		height: 63px;
+	}
+	#last_seperator{
+		position: absolute;
+		bottom: 16px;
+		width: 729px;
+		border: 3px solid green;
+	}
+}
+@media print{
+	body{
+		width: 19.56885cm;
+		padding-left: 1.4424214cm;
+		padding-right: 1.4424214cm;
+		padding-bottom: 4.5676675cm;
+		padding-top: 4.447466cm;
+		/*border: 1px dotted ;*/
+	}
+	.first_tr_td{
+		border-bottom:3px solid #494949;
+		border-right:3px solid #494949;
+		height: 0.24040356cm;
+	}
+	.first_tr_second_td{
+		border-top:3px solid #494949;
+		border-right:3px dotted #bbb;
+	}
+	.second_td{
+		border-right:3px dotted #bbb;
+	}
+	#container{
+		position:relative;
+		padding: 0.3456282cm 0.88949317cm 1.081816cm 0.93757385cm;
+		border-top: none;
+	}
+	#header{
+		position: relative;
+		height: 2.515583cm;
+		border: none;
+		border-bottom: 1px solid;
+	}
+	#title{
+		position: absolute;
+		top: 0cm;
+		left: 0cm;
+		width: 12.885631cm;
+		height: 1.5866635cm;
+		line-height: 1.5866635cm;
+		background-color: #008024;
+		text-align:center;
+		font-size:30px;
+		font-style: italic;
+	}
+	#no{
+		position:absolute;
+		top:0.24040356cm;
+		right:1cm;
+		border: none;
+		font-weight: bold;
+	}
+	#PL{
+		position: absolute;
+		bottom: 0.096161425cm;
+		width: 17.621582cm ;
+	}
+	#PL_first_tr_td{
+		width:14.856939cm;
+		height:0.8173721cm;
+	}
+	#PL_first_tr_second_td{
+		font-size:25px;
+		font-weight:bold;
+	}
+
+	#general_information{
+		position: relative;
+		height: 3.3300705cm;
+	}
+	/*  Customer information */
+	#general_information{
+		position: relative;
+		height: 3.3300705cm;
+		border: none;
+	}
+	#customer_information{
+		position: absolute;
+		bottom: 0.36060536cm;
+		width: 11.491291cm;
+		height: 2.1395917cm;
+		border: none;
+	}
+	#customer_first_tr_td{
+		width: 1.827067cm;
+		height: 0.40868604cm;
+	}
+	#misc{
+		position: absolute;
+		bottom: 0.36060536cm;
+		right: 0px;
+		width: 4.519587cm;
+		height: 2.1395917cm;
+		border: none;
+	}
+	#misc_first_tr_td{
+		width: 1.682825cm;
+		height: 0.40868604cm;
+	}
+
+	#detail_information{
+		position: relative;
+		height: 2.4040358cm;
+		width: 17.6937cm;
+	}
+	#detail_information tr td{
+		border-bottom: none;
+		border-right: 1px dotted #494949;
+		border-left: 1px dotted #494949;
+	}
+	#detail_information tr:first-child td{
+		text-align: center;
+		border: 1px dotted #494949;
+	}
+	#cols_qty{
+		width: 1.8751477cm;
+	}
+	#cols_desc{
+		width: 11.323008cm;
+	}
+	#cols_weight{
+		width: 1.7068653cm;
+	}
+	#cols_total{
+		width: 2.7886813cm;
+	}
+	#detail_information tr:last-child td{
+		border-bottom: 1px dotted #494949;
+	}
+	/* TOTAL COST */
+	#total_cost_container{
+		position: relative;
+		height: 1.1539371cm;
+		border: none;
+	}
+	#total_cost{
+		position: absolute;
+		height: 1.1539371cm;
+		width: 4.5676675cm;
+		top: 0px;
+		right: 0px;
+		text-align: center;
+	}
+	#subTotalLabel{
+		width: 1.7068653cm;
+	}
+
+	#bottom_information{
+		position: relative;
+		top:0.048080713cm;
+		bottom: 0cm;
+		height: 5.40908cm;
+		width: 17.621582cm;
+		border: none;
+		border-bottom: 1px dotted;
+	}
+	#delivery_information{
+		position: relative;
+		height: 2.620399cm;
+		width: 17.621582cm;
+		border: none;
+	}
+	#sender_information{
+		position: absolute;
+		bottom: 0.3846457cm;
+		left: 0px;
+		height: 2.6684797cm;
+		width: 9.568062cm;
+	}
+	#office{
+		position: absolute;
+		bottom: 0.3846457cm;
+		right: 0px;
+		height: 1.1058563cm;
+		width: 6.2504926cm;
+	}
+	#bottom_rectangle{
+		position: absolute;
+		bottom: 0.8173721cm;
+		width: 17.621582cm;
+		height: 1.5145425cm;
+	}
+	#last_seperator{
+		position: absolute;
+		bottom: 0.3846457cm;
+		width: 17.52542cm;
+		border: 3px solid green;
+	}
+}

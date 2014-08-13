@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Quotation template</title>
+
+    <script src="resources/javascript/quotation.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="resources/css/quotation.css">
+
+</head>
+<body>
+  <div id="template_body">
+  <div id="container">
+    <div id="header">
+      <div id="title">Quotation template</div>
+      <div id="no">Quote No.</div>
+      <table id="PL">
+        <tr>
+          <td class="first_tr_td" id="PL_first_tr_td"></td>
+          <td class="first_tr_second_td" id="PL_first_tr_second_td" style="font-size:25px;font-weight:bold">QUOTE</td>
+        </tr>
+      </table>
+    </div>
+    <div id="general_information">
+      <table id="customer_information">
+        <tr>
+          <td class="first_tr_td" id="customer_first_tr_td">Customer</td>
+          <td class="first_tr_second_td" id="customer_first_tr_second_td"></td>
+        </tr>
+        <tr>
+          <td>Name</td>
+          <td class="second_td"><input id="customer_name" type="text" style="width:98%" ng-model="customer.name"/></td>
+        </tr>
+        <tr>
+          <td>Address</td>
+          <td class="second_td"> <input id="customer_address" type="text" style="width:98%" ng-model="customer.address"/></td>
+        </tr>
+        <tr>
+          <td>City</td>
+          <td class="second_td"><input id="customer_city" type="text" style="width:98%" ng-model="customer.city"/></td>
+        </tr>
+        <tr>
+          <td>Phone</td>
+          <td class="second_td"><input id="customer_phone" type="text" style="width:98%" ng-model="customer.phone"/></td></tr>
+        </table>
+        <table id="misc">
+          <tr>
+            <td class="first_tr_td" id="misc_first_tr_td">Misc</td>
+            <td class="first_tr_second_td" id="misc_first_tr_second_td"></td>
+          </tr>
+          <tr>
+            <td>Date</td>
+            <td class="second_td"><input id="misc_date" type="text" style="width:98%" ng-model="misc_information.date"/></td>
+          </tr>
+          <tr>
+            <td>Order No.</td>
+            <td class="second_td"><input id="misc_order_no" type="text" style="width:98%" ng-model="misc_information.orderno"/></td>
+          </tr>
+          <tr>
+            <td>Rep</td>
+            <td class="second_td"><input id="misc_rep" type="text" style="width:98%" ng-model="misc_information.rep1"/></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="second_td"><input id="misc_rep2" type="text" style="width:98%"/></td>
+          </tr>
+        </table>
+      </div>
+      <table id="detail_information">
+          <thead></thead>
+        <tr>
+          <td id="cols_qty">Qty</td>
+          <td id="cols_desc">Description</td>
+          <td id="cols_weight">Unit Price</td>
+          <td id="cols_total">Total</td>
+        </tr>
+      <tr ng-repeat="productSale in productSales">
+          <td><a class="cut">-</a><input  id="productQuantity_{{$index }}" ng-model="productSale.quantity" class="numberinput" type="text" min="1" style="width:98%;border:0px;text-align:center" />
+          </td>
+          <td><input  id="productDescription_{{$index }}" ng-model="productSale.product.name" class="information_td_description" type="text" style="width:98%;border:0px;text-align:center" /></td>
+          <td ng-bind="calculateSellPrice(productSale)">
+          </td>
+          <td class="c_255_255_210" id="1_detail_information_total" ng-bind="calculateItemTotal(productSale)"></td>
+      </tr>
+      </table>
+      <div id="total_cost_container">
+        <table id="total_cost">
+          <tr>
+            <td id="total_cost_firstCol" ></td>
+            <td id="subTotalLabel" >SubTotal</td>
+            <td ng-bind="calculateInventory()" style="border:1px dotted;"  class="c_255_255_210">
+                <!--<input ng-bind="calculateInventory()" class="c_255_255_210" id="subTotal" type="text" style="width:98%;border-bottom:none;text-align:center" readonly/>-->
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Shipping</td>
+            <td style="border:1px dotted;"><input id="shipping" class="numberinput" type="text" style="width:98%;border-bottom:none;text-align:center"/></td>
+          </tr>
+          <tr>
+            <td>Tax Rate(s)</td>
+            <td style="border:1px dotted;"></td>
+            <td style="border:1px dotted;"  class="c_255_255_210"><input class="c_255_255_210" id="tax_rate_1" class="numberinput" type="text" style="width:98%;border-bottom:none;text-align:center"/></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td style="border:1px dotted;"></td>
+            <td style="border:1px dotted;"  class="c_255_255_210"><input  class="c_255_255_210" id="tax_rate_2" class="numberinput" type="text" style="width:98%;border-bottom:none;text-align:center"/></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>TOTAL</td>
+            <td style="border:1px solid;"  class="c_255_255_210"><input class="c_255_255_210" id="total" type="text" style="width:98%;border-bottom:none;text-align:center" readonly/></td>
+          </tr>
+        </table>
+      </div>
+      <div id="bottom_information">
+        <div id="delivery_information">
+          <table id="sender_information">
+            <tr>
+              <td class="first_tr_td" id="customer_first_tr_td">Payment</td>
+              <td class="first_tr_second_td" id="customer_first_tr_second_td"></td>
+            </tr>
+            <tr height="10px">
+              <td></td>
+            </tr>
+            <tr>
+              <td>Comments </td>
+              <td class="second_td"><input type="text" style="width:100%;border-bottom:1px dashed;" /></td>
+            </tr>
+            <tr>
+              <td rowspan="3" style="vertical-align: top;">Name</td>
+              <td class="second_td"> <input type="text" style="width:100%" /></td>
+            </tr>
+            <tr>
+              <td class="second_td"> <input type="text" style="width:100%" /></td>
+            </tr>
+            <tr>
+              <td class="second_td"> <input type="text" style="width:100%" /></td>
+            </tr>
+          </table>
+          <div id="office">
+            Office Use Only
+          </div>
+        </div>
+        <div id="bottom_rectangle">
+        </div>
+        <div id="last_seperator">
+        </div>
+      </div>
+    </div>
+    </div>
+  </body>
+  </html>

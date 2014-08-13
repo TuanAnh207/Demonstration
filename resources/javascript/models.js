@@ -16,11 +16,12 @@ function Customer(id, name, address, city, phone) {
     this.city = city;
     this.phone = phone;
 }
-function Product(id, name, weight,price) {
+function Product(id, name, weight,price,profit) {
     this.id = id;
     this.name = name;
     this.weight = weight;
     this.price = price;
+    this.profit = profit;
 }
 function ProductSale(product, quantity) {
     this.product = product;

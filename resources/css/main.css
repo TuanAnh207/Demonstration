@@ -1,4 +1,9 @@
 @media all{
+    /* CSS for autocomplete */
+    .fixed-height {
+        max-height: 250px;
+        overflow: auto;
+    }
     /* content editable */
 
     *[contenteditable] { border-radius: 0.25em; min-width: 1em; outline: 0; }
@@ -7,7 +12,7 @@
 
     *[contenteditable]:hover, *[contenteditable]:focus, td:hover *[contenteditable], td:focus *[contenteditable], img.hover { background: #DEF; box-shadow: 0 0 1em 0.5em #DEF; }
 
-    span[contenteditable] { display: inline-block; }
+    span[contenteditable] { display: inline-block;width: 100% }
     body{
         padding: 20px 20px 20px 20px;
     }
@@ -18,7 +23,7 @@
     table {
         /*border-spacing: 0;*/
         font-size: 12px;
-        font-family: "Helvetica Neue", Helvetica, sans-serif
+        /*font-family: "Helvetica Neue", Helvetica, sans-serif*/
     }
     input{
         border: 0px;
@@ -34,20 +39,20 @@
         padding: 5px;
     }
     /*  Table Customer information & Misc */
-    #general_information{
+    #inventory_general_information{
         position: relative;
         height: 138.52px;
         width: 100%;
         border: none;
     }
-    #customer_information{
+    #inventory_customer_information{
         position: absolute;
         left: 0px;
         width: 60%;
         height: 89px;
         border-collapse: separate; border-spacing: 2px
     }
-    #misc_information{
+    #inventory_misc_information{
         position: absolute;
         right: 0px;
         width: 40%;
@@ -55,13 +60,13 @@
         margin:0px 0px 0px 40px;
     }
 
-    #misc_information th,#customer_information th{
+    #inventory_misc_information th,#inventory_customer_information th{
         width: 30%;
         background: #EEE;
         border-color: #BBB;
         border-width: 1px; padding: 0.5em; position: relative; text-align: left;  border-radius: 0.25em; border-style: solid;
     }
-    #misc_information td,#customer_information td{
+    #inventory_misc_information td,#inventory_customer_information td{
         width: 70%;
         border-color: #DDD;
         border-width: 1px; padding: 0.5em; position: relative; text-align: left;  border-radius: 0.25em; border-style: solid;
@@ -71,6 +76,7 @@
         table-layout: fixed;
         clear: both;
         width: 100%;
+        border-collapse: separate;
     }
 
     #inventory thead {
@@ -140,5 +146,17 @@
 
     #action_table{
         width: 100%;
+    }
+
+    /* screen version of printable element */
+    .printable_element{
+        /*display: none;*/
+        text-align: center;
+    }
+}
+
+@media print {
+    /* printable element */
+    .printable_element{
     }
 }
