@@ -35,7 +35,7 @@ $(document).ready(function () {
         var app = angular.module('Demonstration', ['ngSanitize']);
 
         app.controller('mainControler',
-            function ($scope) {
+            function ($scope,$timeout) {
                 var appElement = document.querySelector('[ng-app=Demonstration]');
                 var appScope = angular.element(appElement).scope();
                 appScope.misc_information = new Misc(moment().format('L'),' ',' ',' ');
@@ -64,14 +64,22 @@ $(document).ready(function () {
                 
                 $scope.addEmptyProduct = function () {
                     appScope.productSales.push(new ProductSale(new Product('','','','','',''),0));
+                    $timeout(function () {
+                        target = $('#productDescription_'+(appScope.productSales.length-1));
+                        setProductAutocomplete(target);
+                        target.click(function () {
+                            target.autocomplete("search","");
+                        })
+                    })
                 }
+
                 $scope.removeProduct = function (productSale) {
                     var index = $scope.productSales.indexOf(productSale);
                     appScope.productSales.splice(index,1);
                 };
                 appScope.productInformationKeyUp = function (productSale,colsName) {
                     if (colsName =='name' )
-                        productInformationKeyUpMain(productSale.product.name,'name');
+                        productInformationKeyUpMain('name');
                     else if (colsName=='quantity'){
 
                     }

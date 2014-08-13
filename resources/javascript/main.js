@@ -23,7 +23,6 @@ function buildConfig(completeFn)
 $(document).ready(function () {
     $("#print_quotation_btn").click(function (event) {
         var html = fs.readFileSync("./quotation.html");
-        html= html.toString();
         var html_head = html.match(/<head[^>]*>((\r|\n|.)*)<\/head/m),
             html_body = html.match(/<body[^>]*>((\r|\n|.)*)<\/body/m);
 
@@ -31,8 +30,6 @@ $(document).ready(function () {
         html_body = html_body ? html_body[1] : '';
 
         $('#printable_quotation').html(html);
-//        $('#printable_quotation head').html(html_head);
-//        $('#printable_quotation body').html(html_body);
     });
     if (customerDataSource.length==0){
         customerDataSource = getCSVContent("./resources/data/customer_sample.csv")
@@ -42,39 +39,12 @@ $(document).ready(function () {
     }
     customer_name_input = $('#customer_name');
 
-    customer_name_input.autocomplete({
-        source: customerDataSource,
-        minLength: 0,
-        source: function (request,response) {
-            if (rtrim(input.text().toLowerCase().trim(),' ').length==0)
-                response(customerDataSource);
-            else {
-                foundObjs = search(data, [ 'name' ],
-                    productDataSource);
-                response(foundObjs);
-            }
-        },
-        select : function(event, ui) {
-            index = parseInt(id.replace("productDescription_",""));
-            var appElement = document.querySelector('[ng-app=Demonstration]');
-            var appScope = angular.element(appElement).scope();
-            appScope.$apply(function () {
-                quantity = $('#'+id.replace("productDescription_","productQuantity_")).text();
-                if (isNaN(parseInt(quantity))) quantity = 1;
-                productSale = new ProductSale(ui.item,quantity);
-                appScope.productSales[index] = productSale;
-            });
-            return false;
-        },
-        focus : function(event, ui) {
-            return false;
-        }
-    }).autocomplete('widget').addClass("fixed-height");
+    customerInformationKeyUp(event, customer_name_input,
+        'name')
 
-//    customer_name_input.keyup(function(event) {
-//        customerInformationKeyUp(event, customer_name_input,
-//            'name');
-//    });
+    customer_name_input.focus(function () {
+        customer_name_input.autocomplete("search","");
+    })
 })
 function getCSVContent(path) {
     fileContent = fs.readFileSync(path);
@@ -89,45 +59,56 @@ function getCSVContent(path) {
     }
     else console.log("Parsed customer information error");
 }
-function productInformationKeyUpMain(data,searchAttr){
+function productInformationKeyUpMain(searchAttr){
     specialKeyCode = [ 13, 16, 17, 27, 19, 37, 38, 39, 40, 45, 46 ];
-    if (specialKeyCode.indexOf(event.keyCode) == -1 && !event.metakey) {
+    keyCode = 32;
+    metaKey = false;
+    if (event!=null) {
+        keyCode = event.keyCode;
+        metaKey = event.metakey;
+    }
+    if (specialKeyCode.indexOf(keyCode) == -1 && !metaKey) {
         id = event.target.id;
         target = $('#' + id);
-        target.autocomplete(
-            {
-                minLength : 0,
-                source : function(request, response) {
-                    if (rtrim(input.text().toLowerCase().trim(),' ').length==0)
-                        response(customerDataSource);
-                    else {
-                        foundObjs = search(data, [ 'name' ],
-                            productDataSource);
-                        response(foundObjs);
-                    }
-                },
-                select : function(event, ui) {
-                    index = parseInt(id.replace("productDescription_",""));
-                    var appElement = document.querySelector('[ng-app=Demonstration]');
-                    var appScope = angular.element(appElement).scope();
-                    appScope.$apply(function () {
-                        quantity = $('#'+id.replace("productDescription_","productQuantity_")).text();
-                        if (isNaN(parseInt(quantity))) quantity = 1;
-                        productSale = new ProductSale(ui.item,quantity);
-                        appScope.productSales[index] = productSale;
-                    });
-                    return false;
-                },
-                focus : function(event, ui) {
-                    return false;
-                }
-            }).autocomplete("instance")._renderItem = function(ul,
-                                                               item) {
-            return $("<li>").append(
-                    "<a>" + item.name + "<br>" + item.weight +"kg<br>"+item.price +"$</a>")
-                .appendTo(ul);
-        };
+        setProductAutocomplete(target);
     }
+}
+function setProductAutocomplete(target) {
+    id = target.attr('id');
+    target.autocomplete(
+        {
+            minLength : 0,
+            source : function(request, response) {
+                if (rtrim(request.term.toLowerCase().trim(),' ').length==0)
+                    response(productDataSource);
+                else {
+                    foundObjs = search(request.term, [ 'name' ],
+                        productDataSource);
+                    response(foundObjs);
+                }
+            },
+            select : function(event, ui) {
+                index = parseInt(id.replace("productDescription_",""));
+                var appElement = document.querySelector('[ng-app=Demonstration]');
+                var appScope = angular.element(appElement).scope();
+                appScope.$apply(function () {
+                    quantity = $('#'+id.replace("productDescription_","productQuantity_")).text();
+                    if (isNaN(parseInt(quantity))) quantity = 1;
+                    productSale = new ProductSale(ui.item,quantity);
+                    appScope.productSales[index] = productSale;
+                });
+                return false;
+            },
+            focus : function(event, ui) {
+                return false;
+            }
+        }).autocomplete("instance")._renderItem = function(ul,
+                                                           item) {
+        return $("<li>").append(
+                "<a>" + item.name + "<br>" + item.weight +"kg<br>"+item.price +"$</a>")
+            .appendTo(ul);
+    };
+    target.autocomplete('widget').addClass("fixed-height");
 }
 function customerInformationKeyUp(event, input, searchAttr) {
     specialKeyCode = [ 13, 16, 17, 27, 19, 37, 38, 39, 40, 45, 46 ];
@@ -136,7 +117,7 @@ function customerInformationKeyUp(event, input, searchAttr) {
         input.autocomplete({
             minLength : 0,
             source : function(request, response) {
-                if (rtrim(input.text().toLowerCase().trim(),' ').length==0)
+                if (rtrim(request.term.toLowerCase().trim(),' ').length==0)
                     response(customerDataSource);
                 else {
                     foundObjs = search(input.text(), [ searchAttr ], customerDataSource);
@@ -160,8 +141,9 @@ function customerInformationKeyUp(event, input, searchAttr) {
                     "<a>" + item.name + "<br>" + item.address + "," + item.city
                     + "<br>" + item.phone + "</a>").appendTo(ul);
         };
-        input.focus(function () {
-            $(this).autocomplete("search",'');
+        input.autocomplete('widget').addClass("fixed-height");
+        input.click(function () {
+            input.autocomplete("search","");
         })
     }
 }
