@@ -38,6 +38,7 @@
         text-transform: uppercase;
         padding: 5px;
     }
+
     /*  Table Customer information & Misc */
     #inventory_general_information{
         position: relative;
@@ -157,7 +158,12 @@
 }
 
 @media print {
-    /* printable element */
-    .printable_element{
+    table {
+        border-spacing: 0;
+        /*font-size: 12px;*/
+        /*font-family: "Helvetica Neue", Helvetica, sans-serif*/
+    }
+    #placeholder{
+        display: none;
     }
 }

@@ -13,7 +13,21 @@ function focusChildren(childrenId) {
 }
 $(document).ready(function () {
     /* Binding event to handler*/
-
+    window.onkeydown = function (e) {
+        if (e.metaKey && e.keyCode==80){
+            window.print();
+        }
+        else if (e.shiftKey){
+            var appElement = document.querySelector('[ng-app=Demonstration]');
+            var appScope = angular.element(appElement).scope();
+            if (e.keyCode == 187) appScope.addEmptyProduct();
+            else if (e.keyCode==189 && appScope.productSales.length>0){
+                appScope.$apply(function () {
+                    appScope.productSales.splice(appScope.productSales.length-1,1);
+                })
+            }
+        }
+    }
 
     /* Angular */
     if(typeof angular == 'undefined') {
@@ -36,8 +50,11 @@ $(document).ready(function () {
 
         app.controller('mainControler',
             function ($scope,$timeout) {
+
                 var appElement = document.querySelector('[ng-app=Demonstration]');
                 var appScope = angular.element(appElement).scope();
+                appScope.shipping_price = 0;
+                appScope.shipping_weight = 0;
                 appScope.misc_information = new Misc(moment().format('L'),' ',' ',' ');
                 appScope.customer = new Customer('','','','','');
                 appScope.productSales = [];
@@ -61,6 +78,32 @@ $(document).ready(function () {
                     else total = parseFloat(total);
                     return total.toFixed(2);
                 };
+                appScope.calculateInventoryWeight = function () {
+                    var total =  0;
+                    for(i=0;i<appScope.productSales.length;i++){
+                        productSale = appScope.productSales[i];
+                        total +=(parseFloat(productSale.product.weight)*parseInt(productSale.quantity));
+                    }
+                    if (total==null) total = 0;
+                    else total = parseFloat(total);
+                    return total.toFixed(2);
+                }
+
+                appScope.calculateTotalWeight = function (shipping_weight) {
+                    var total = parseFloat(appScope.calculateInventoryWeight());
+                    var s_price = parseFloat(shipping_weight);
+                    if (s_price==null) s_price=0;
+                    total+=s_price;
+                    return total.toFixed(2);
+                }
+
+                appScope.calculateTotalPrice = function (shipping_price) {
+                    var total = parseFloat(appScope.calculateInventory());
+                    var s_price = parseFloat(shipping_price);
+                    if (s_price==null) s_price=0;
+                    total+=s_price;
+                    return total.toFixed(2);
+                }
                 
                 $scope.addEmptyProduct = function () {
                     appScope.productSales.push(new ProductSale(new Product('','','','','',''),0));

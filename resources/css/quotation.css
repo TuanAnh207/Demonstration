@@ -24,19 +24,6 @@
 	}
 }
 @media screen{
-	#process{
-		position:fixed;
-		width:897px;
-		height:80px;
-		line-height:80px;
-		text-align: center;
-		z-index: 40;
-		background-color: #8f8f8f;
-        padding-left: 37px;
-		top:0px;
-		font-size:30px;
-		font-weight: bold;
-	}
 	#template_body{
 		width: 814px;
         height: 100%;
@@ -375,9 +362,8 @@ border-color:#2a6d5b;
 		height: 1.8991882cm ;
 		width: 6.3226137cm;
 		top: 0px;
-		right: -0.024040356cm;
+		right: -0.14424214cm;
 		text-align: center;
-        table-layout: fixed;
 	}
 	#total_cost_secondCol {
 		width: 1.7068653cm;

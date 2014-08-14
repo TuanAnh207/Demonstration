@@ -88,15 +88,15 @@
         <table id="total_cost">
           <tr>
             <td id="total_cost_secondCol">SubTotal</td>
-            <td style="border:1px dotted;"></td>
+            <td style="border:1px dotted;" ng-bind="calculateInventoryWeight()"></td>
           </tr>
           <tr>
             <td>Shipping</td>
-            <td style="border:1px dotted;"><input id="shipping" class="numberinput" type="text" style="width:98%;border-bottom:none;text-align:center"/></td>
+            <td style="border:1px dotted;"><input id="shipping" class="numberinput" type="text" style="width:98%;border-bottom:none;text-align:center" ng-model="shipping_weight"/></td>
           </tr>
           <tr>
             <td>TOTAL</td>
-            <td style="border:1px solid;"><input class="c_255_255_210" id="total" type="text" style="width:98%;border-bottom:none;text-align:center" readonly/></td>
+            <td style="border:1px solid;" ng-bind="calculateTotalWeight(shipping_weight)"></td>
           </tr>
         </table>
       </div>

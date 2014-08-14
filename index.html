@@ -6,6 +6,7 @@
     <script type="text/javascript" src="bower_components/jquery-ui/jquery-ui.js"></script>
     <script type="text/javascript" src="resources/javascript/papaparse.js"></script>
 
+    <script src="resources/javascript/printThis.js"></script>
     <script src="resources/javascript/moment.js"></script>
     <script src="resources/javascript/models.js"></script>
     <script src="resources/javascript/filldata.js"></script>
@@ -93,14 +94,15 @@
         </table>
         <table id="action_table">
             <tr>
-                <td style="width: 33%"><input ng-click="showTemplate('printable_quotation')" id="print_quotation_btn" style="width: 100%" class="button button-inline button-large" type="submit" value="Quotation"/></td>
-                <td style="width: 33%"><input ng-click="showTemplate('printable_packinglist')"  id="print_packinglist_btn" style="width: 100%" class="button button-inline button-large" type="submit" value="Packing Lists"/></td>
-                <td style="width: 33%"><input ng-click="showTemplate('printable_invoice')"  id="print_invoice_btn" style="width: 100%" class="button button-inline button-large" type="submit" value="Invoice"/></td>
+                <td style="width: 26% "><input ng-click="showTemplate('printable_quotation')" id="print_quotation_btn" style="width: 100%" class="button button-inline button-large" type="submit" value="Quotation"/></td>
+                <td style="width: 26%"><input ng-click="showTemplate('printable_packinglist')"  id="print_packinglist_btn" style="width: 100%" class="button button-inline button-large" type="submit" value="Packing Lists"/></td>
+                <td style="width: 26%"><input ng-click="showTemplate('printable_invoice')"  id="print_invoice_btn" style="width: 100%" class="button button-inline button-large" type="submit" value="Invoice"/></td>
+                <td style="width: 22%"><input id="print_template_body" type="submit" class="button button-inline button-large" value="PRINT" style="background-color: #003147;color:white"/></td>
             </tr>
         </table>
-        <div ng-if="templateFlag.printable_quotation" class="printable_element" id="printable_quotation" ng-include="'./quotation.html'"></div>
-        <div ng-if="templateFlag.printable_packinglist" class="printable_element" id="printable_packinglist" ng-include="'./packinglist.html'"></div>
-        <div ng-if="templateFlag.printable_invoice" class="printable_element" id="printable_invoice"></div>
     </div>
+    <div ng-if="templateFlag.printable_quotation" class="printable_element" id="printable_quotation" ng-include="'./quotation.html'"></div>
+    <div ng-if="templateFlag.printable_packinglist" class="printable_element" id="printable_packinglist" ng-include="'./packinglist.html'"></div>
+    <div ng-if="templateFlag.printable_invoice" class="printable_element" id="printable_invoice" ng-include="'./invoice.html'"></div>
 </body>
 </html>

@@ -96,7 +96,7 @@
           <tr>
             <td></td>
             <td>Shipping</td>
-            <td style="border:1px dotted;"><input id="shipping" class="numberinput" type="text" style="width:98%;border-bottom:none;text-align:center"/></td>
+            <td style="border:1px dotted;"><input id="shipping" class="numberinput" type="text" style="width:98%;border-bottom:none;text-align:center" ng-model="shipping_price"/></td>
           </tr>
           <tr>
             <td>Tax Rate(s)</td>
@@ -111,7 +111,7 @@
           <tr>
             <td></td>
             <td>TOTAL</td>
-            <td style="border:1px solid;"  class="c_255_255_210"><input class="c_255_255_210" id="total" type="text" style="width:98%;border-bottom:none;text-align:center" readonly/></td>
+            <td style="border:1px solid;"  class="c_255_255_210" ng-bind="calculateTotalPrice( shipping_price)"></td>
           </tr>
         </table>
       </div>

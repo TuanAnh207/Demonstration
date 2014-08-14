@@ -37,6 +37,10 @@ $(document).ready(function () {
     if (productDataSource.length==0){
         productDataSource = getCSVContent("./resources/data/product_sample.csv")
     }
+    $('#print_template_body').click(function () {
+       window.print();
+    });
+    
     var customer_name_input = $('#customer_name');
 
     setCustomerAutocomplete(customer_name_input,'name');
