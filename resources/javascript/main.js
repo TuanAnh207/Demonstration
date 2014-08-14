@@ -22,7 +22,7 @@ function buildConfig(completeFn)
 
 $(document).ready(function () {
     $("#print_quotation_btn").click(function (event) {
-        var html = fs.readFileSync("./quotation.html");
+        var html = fs.readFileSync("./quotation.html").toString();
         var html_head = html.match(/<head[^>]*>((\r|\n|.)*)<\/head/m),
             html_body = html.match(/<body[^>]*>((\r|\n|.)*)<\/body/m);
 
@@ -37,14 +37,9 @@ $(document).ready(function () {
     if (productDataSource.length==0){
         productDataSource = getCSVContent("./resources/data/product_sample.csv")
     }
-    customer_name_input = $('#customer_name');
+    var customer_name_input = $('#customer_name');
 
-    customerInformationKeyUp(event, customer_name_input,
-        'name')
-
-    customer_name_input.focus(function () {
-        customer_name_input.autocomplete("search","");
-    })
+    setCustomerAutocomplete(customer_name_input,'name');
 })
 function getCSVContent(path) {
     fileContent = fs.readFileSync(path);
@@ -59,31 +54,26 @@ function getCSVContent(path) {
     }
     else console.log("Parsed customer information error");
 }
-function productInformationKeyUpMain(searchAttr){
+function productInformationKeyUpMain(data,searchAttr){
     specialKeyCode = [ 13, 16, 17, 27, 19, 37, 38, 39, 40, 45, 46 ];
-    keyCode = 32;
-    metaKey = false;
-    if (event!=null) {
-        keyCode = event.keyCode;
-        metaKey = event.metakey;
-    }
-    if (specialKeyCode.indexOf(keyCode) == -1 && !metaKey) {
+    if (specialKeyCode.indexOf(event.keyCode) == -1 && !event.metakey) {
         id = event.target.id;
-        target = $('#' + id);
-        setProductAutocomplete(target);
+        var target = $('#' + id);
+        if (!target.hasClass("ui-autocomplete-input"))
+            setProductAutocomplete(target);
     }
 }
 function setProductAutocomplete(target) {
-    id = target.attr('id');
+    var id = target.attr('id');
     target.autocomplete(
         {
             minLength : 0,
             source : function(request, response) {
+                console.log('product autocomplete');
                 if (rtrim(request.term.toLowerCase().trim(),' ').length==0)
                     response(productDataSource);
                 else {
-                    foundObjs = search(request.term, [ 'name' ],
-                        productDataSource);
+                    foundObjs = search(request.term, [ 'name' ], productDataSource);
                     response(foundObjs);
                 }
             },
@@ -109,43 +99,42 @@ function setProductAutocomplete(target) {
             .appendTo(ul);
     };
     target.autocomplete('widget').addClass("fixed-height");
+    target.click(function () {
+        target.autocomplete("search",target.text());
+    })
 }
-function customerInformationKeyUp(event, input, searchAttr) {
-    specialKeyCode = [ 13, 16, 17, 27, 19, 37, 38, 39, 40, 45, 46 ];
-    if (specialKeyCode.indexOf(event.keyCode) == -1 && !event.metakey) {
-
-        input.autocomplete({
-            minLength : 0,
-            source : function(request, response) {
-                if (rtrim(request.term.toLowerCase().trim(),' ').length==0)
-                    response(customerDataSource);
-                else {
-                    foundObjs = search(input.text(), [ searchAttr ], customerDataSource);
-                    response(foundObjs);
-                }
-            },
-            select : function(event, ui) {
-                //fillCustomerData(ui.item);
-                var appElement = document.querySelector('[ng-app=Demonstration]');
-                var appScope = angular.element(appElement).scope();
-                appScope.$apply(function () {
-                   appScope.customer = ui.item;
-                });
-                return false;
-            },
-            focus : function(event, ui) {
-                return false;
+function setCustomerAutocomplete(target,searchAttr) {
+    target.autocomplete({
+        minLength : 0,
+        source : function(request, response) {
+            if (rtrim(request.term.toLowerCase().trim(),' ').length==0)
+                response(customerDataSource);
+            else {
+                foundObjs = search(request.term, [ searchAttr ], customerDataSource);
+                response(foundObjs);
             }
-        }).autocomplete("instance")._renderItem = function(ul, item) {
-            return $("<li>").append(
-                    "<a>" + item.name + "<br>" + item.address + "," + item.city
-                    + "<br>" + item.phone + "</a>").appendTo(ul);
-        };
-        input.autocomplete('widget').addClass("fixed-height");
-        input.click(function () {
-            input.autocomplete("search","");
-        })
-    }
+        },
+        select : function(event, ui) {
+            //fillCustomerData(ui.item);
+            var appElement = document.querySelector('[ng-app=Demonstration]');
+            var appScope = angular.element(appElement).scope();
+            appScope.$apply(function () {
+                appScope.customer = ui.item;
+            });
+            return false;
+        },
+        focus : function(event, ui) {
+            return false;
+        }
+    }).autocomplete("instance")._renderItem = function(ul, item) {
+        return $("<li>").append(
+                "<a>" + item.name + "<br>" + item.address + "," + item.city
+                + "<br>" + item.phone + "</a>").appendTo(ul);
+    };
+    target.autocomplete('widget').addClass("fixed-height");
+    target.click(function () {
+        target.autocomplete("search","");
+    })
 }
 
 /************** My search functions **************/

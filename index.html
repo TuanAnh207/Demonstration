@@ -82,12 +82,12 @@
             </tfoot>
             <tr ng-repeat="productSale in productSales">
                 <td><a class="cut" ng-click="removeProduct(productSale)">-</a>{{productSale.product.id}}</td>
-                <td><span id="productDescription_{{$index}}" contenteditable ng-model="productSale.product.name" ng-keyup="productInformationKeyUp(productSale,'name')"/> </td>
+                <td><span contenteditable id="productDescription_{{$index}}"  ng-model="productSale.product.name" ng-keyup="productInformationKeyUp(productSale,'name')" ></span> </td>
                 <td>{{productSale.product.price}}</td>
                 <td><span contenteditable type="text" ng-model="productSale.product.profit" style="border: none;width: 100%;" /></td>
                 <td ng-bind="calculateSellPrice(productSale)">
                 </td>
-                <td><span id="productQuantity_{{$index }}" contenteditable ng-model="productSale.quantity" ng-keyup="productInformationKeyUp(productSale,'quantity')"</td>
+                <td><span id="productQuantity_{{$index }}" contenteditable ng-model="productSale.quantity"/></td>
                 <td ng-bind="calculateItemTotal(productSale)"></td>
             </tr>
         </table>

@@ -158,23 +158,28 @@
 
     #total_cost_container{
         position: relative;
-        height: 79px;
+        height: 80px;
+        width: 100%;
         border: none;
     }
     #total_cost{
         position: absolute;
         height: 79px;
-        width: 262px;
+        width: 263px;
         top: 0px;
-        right: 0px;
+        right: -1px;
         text-align: center;
-    }
-    #subTotalLabel{
-        width: 71px;
+        table-layout: fixed;
     }
     #total_cost_firstCol{
+        width: 74px;
+    }
+    #total_cost_secondCol {
         width: 71px;
     }
+    /*#total_cost_thirdCol{*/
+        /*width: 110px;*/
+    /*}*/
 
     #bottom_information{
         position: relative;
@@ -362,22 +367,23 @@ border-color:#2a6d5b;
 	/* TOTAL COST */
 	#total_cost_container{
 		position: relative;
-		height: 1.8991882cm;
+		height: 1.9232285cm;
 		border: none;
 	}
 	#total_cost{
 		position: absolute;
 		height: 1.8991882cm ;
-		width: 6.2985735cm ;
+		width: 6.3226137cm;
 		top: 0px;
-		right: 0px;
+		right: -0.024040356cm;
 		text-align: center;
+        table-layout: fixed;
 	}
-	#subTotalLabel{
+	#total_cost_secondCol {
 		width: 1.7068653cm;
 	}
 	#total_cost_firstCol{
-		width: 1.7068653cm;
+		width: 1.7789863cm;
 	}
 
 	#bottom_information{

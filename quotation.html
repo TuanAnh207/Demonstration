@@ -76,21 +76,21 @@
           <td id="cols_total">Total</td>
         </tr>
       <tr ng-repeat="productSale in productSales">
-          <td><a class="cut">-</a><input  id="productQuantity_{{$index }}" ng-model="productSale.quantity" class="numberinput" type="text" min="1" style="width:98%;border:0px;text-align:center" />
+          <td><a class="cut">-</a>
+              <input  id="productQuantity_{{$index }}" ng-model="productSale.quantity" class="numberinput" type="text" min="1" style="width:98%;border:0px;text-align:center" />
           </td>
           <td><input  id="productDescription_{{$index }}" ng-model="productSale.product.name" class="information_td_description" type="text" style="width:98%;border:0px;text-align:center" /></td>
           <td ng-bind="calculateSellPrice(productSale)">
           </td>
-          <td class="c_255_255_210" id="1_detail_information_total" ng-bind="calculateItemTotal(productSale)"></td>
+          <td class="c_255_255_210" id="productTotal_{{$index}}" ng-bind="calculateItemTotal(productSale)"></td>
       </tr>
       </table>
       <div id="total_cost_container">
         <table id="total_cost">
           <tr>
             <td id="total_cost_firstCol" ></td>
-            <td id="subTotalLabel" >SubTotal</td>
-            <td ng-bind="calculateInventory()" style="border:1px dotted;"  class="c_255_255_210">
-                <!--<input ng-bind="calculateInventory()" class="c_255_255_210" id="subTotal" type="text" style="width:98%;border-bottom:none;text-align:center" readonly/>-->
+            <td id="total_cost_secondCol" >SubTotal</td>
+            <td id="total_cost_thirdCol" ng-bind="calculateInventory()" style="border:1px dotted;"  class="c_255_255_210">
             </td>
           </tr>
           <tr>
@@ -119,8 +119,8 @@
         <div id="delivery_information">
           <table id="sender_information">
             <tr>
-              <td class="first_tr_td" id="customer_first_tr_td">Payment</td>
-              <td class="first_tr_second_td" id="customer_first_tr_second_td"></td>
+              <td class="first_tr_td" id="sender_first_tr_td">Payment</td>
+              <td class="first_tr_second_td" id="sender_first_tr_second_td"></td>
             </tr>
             <tr height="10px">
               <td></td>

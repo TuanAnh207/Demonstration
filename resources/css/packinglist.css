@@ -132,6 +132,7 @@
 	#detail_information{
 		position: relative;
 		width: 736px;
+        table-layout: fixed;
 	}
 	#detail_information tr td{
 		border-bottom: none;
@@ -169,11 +170,11 @@
 		height: 48px;
 		width: 190px;
 		top: 0px;
-		right: 0px;
+		right: -6px;
 		text-align: center;
 	}
-	#subTotalLabel{
-		width: 71px;
+	#total_cost_secondCol {
+		width: 72px;
 	}
 
 	#bottom_information{
@@ -357,12 +358,12 @@
 		height: 1.1539371cm;
 		width: 4.5676675cm;
 		top: 0px;
-		right: 0px;
+		right: -0.024040356cm;
 		text-align: center;
 	}
-	#subTotalLabel{
-		width: 1.7068653cm;
-	}
+	#total_cost_secondCol {
+		width: 1.7309057cm;
+    }
 
 	#bottom_information{
 		position: relative;

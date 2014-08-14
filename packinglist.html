@@ -67,6 +67,7 @@
         </table>
       </div>
       <table id="detail_information">
+        <thead></thead>
         <tr>
           <td id="cols_qty">Qty</td>
           <td id="cols_desc">Description</td>
@@ -78,18 +79,16 @@
                   <input  id="productQuantity_{{$index }}" ng-model="productSale.quantity" class="numberinput" type="text" min="1" style="width:98%;border:0px;text-align:center" />
               </td>
               <td><input  id="productDescription_{{$index }}" ng-model="productSale.product.name" class="information_td_description" type="text" style="width:98%;border:0px;text-align:center" /></td>
-              <td >
-                  <input ng-model="productSale.product.weight" type="text" style="border: none;" readonly/>
+              <td ng-bind="productSale.product.weight">
               </td>
-              <td class="c_255_255_210" id="1_detail_information_total" ng-bind="calculateWeightTotal(productSale)"></td>
+              <td class="c_255_255_210" id="productTotal_{{$index}}" ng-bind="calculateWeightTotal(productSale)"></td>
           </tr>
-      </table>
       </table>
       <div id="total_cost_container">
         <table id="total_cost">
           <tr>
-            <td id="subTotalLabel" >SubTotal</td>
-            <td style="border:1px dotted;"><input class="c_255_255_210" id="subTotal" type="text" style="width:98%;border-bottom:none;text-align:center" readonly/></td>
+            <td id="total_cost_secondCol">SubTotal</td>
+            <td style="border:1px dotted;"></td>
           </tr>
           <tr>
             <td>Shipping</td>

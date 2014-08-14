@@ -64,13 +64,11 @@ $(document).ready(function () {
                 
                 $scope.addEmptyProduct = function () {
                     appScope.productSales.push(new ProductSale(new Product('','','','','',''),0));
+                    var index = appScope.productSales.length-1;
                     $timeout(function () {
-                        target = $('#productDescription_'+(appScope.productSales.length-1));
+                        var target = $('#productDescription_'+index);
                         setProductAutocomplete(target);
-                        target.click(function () {
-                            target.autocomplete("search","");
-                        })
-                    })
+                    });
                 }
 
                 $scope.removeProduct = function (productSale) {
@@ -79,7 +77,7 @@ $(document).ready(function () {
                 };
                 appScope.productInformationKeyUp = function (productSale,colsName) {
                     if (colsName =='name' )
-                        productInformationKeyUpMain('name');
+                        productInformationKeyUpMain(productSale.product.name,'name');
                     else if (colsName=='quantity'){
 
                     }
