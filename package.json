@@ -5,7 +5,7 @@
   "main": "index.html",
   "window": {
     "title": "Demonstration",
-    "toolbar": true,
+    "toolbar": false,
     "width": 732,
     "height": 600
   },

@@ -15,10 +15,13 @@ if (productDataSource==null){
     var productDataSource =[];
 }
 
-function buildConfig(completeFn)
-{
-    return ;
-}
+function allowNumbericWithDecimalSpan() {
+    event = window.event;
+    target = $('#'+event.target.id);
+    if ((event.which != 46 || target.text().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+        event.preventDefault();
+    }
+};
 
 $(document).ready(function () {
     $("#print_quotation_btn").click(function (event) {

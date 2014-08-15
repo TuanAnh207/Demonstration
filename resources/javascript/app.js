@@ -2,7 +2,54 @@
 * Created by apple on 8/12/14.
 */
 var moment = require('./resources/javascript/moment.js');
+// Load native UI library
+var nw = require('nw.gui'); //or global.window.nwDispatcher.requireNwGui() (see https://github.com/rogerwang/node-webkit/issues/707)
 
+// Get the current window
+var win = nw.Window.get();
+
+// Window menu
+var windowMenu = new nw.Menu({
+    type: 'menubar'
+});
+customerDataPath = './resources/data/customer_sample.csv';
+productDataPath = './resources/data/product_sample.csv';
+
+// Assign to window
+nw.Window.get().menu = windowMenu;
+
+// Help menu
+var helpMenu = new nw.Menu();
+// Add to window menu
+windowMenu.append(new nw.MenuItem({
+    label: 'Help',
+    submenu: helpMenu
+}));
+
+// About sub-entry
+helpMenu.append(new nw.MenuItem({
+    label: 'Choose customer data',
+    click: function(){
+        var chooser = $('#customerDataPath');
+        chooser.change(function(evt) {
+            customerDataSource = getCSVContent($(this).val());
+        });
+        chooser.trigger('click');
+    }
+}));
+helpMenu.append(new nw.MenuItem({
+    label: 'Choose product data',
+    click: function(){
+        var chooser = $('#productDataPath');
+        chooser.change(function(evt) {
+            productDataSource = getCSVContent($(this).val());
+        });
+        chooser.trigger('click');
+    }
+}))
+function chooseFile(name) {
+
+}
 if (loaded ==null) {
     var loaded = false;
 }
@@ -12,6 +59,7 @@ function focusChildren(childrenId) {
     $('#'+childrenId).focus();
 }
 $(document).ready(function () {
+    win.maximize();
     /* Binding event to handler*/
     window.onkeydown = function (e) {
         if (e.metaKey && e.keyCode==80){
@@ -20,7 +68,14 @@ $(document).ready(function () {
         else if (e.shiftKey){
             var appElement = document.querySelector('[ng-app=Demonstration]');
             var appScope = angular.element(appElement).scope();
-            if (e.keyCode == 187) appScope.addEmptyProduct();
+            if (e.keyCode == 187) {
+                appScope.$apply(function () {
+                    appScope.productSales.push(new ProductSale(new Product('', '', '', '', '', ''), 0));
+                });
+                var index = appScope.productSales.length-1;
+                var target = $('#productDescription_'+index);
+                setProductAutocomplete(target);
+            }
             else if (e.keyCode==189 && appScope.productSales.length>0){
                 appScope.$apply(function () {
                     appScope.productSales.splice(appScope.productSales.length-1,1);
@@ -60,10 +115,10 @@ $(document).ready(function () {
                 appScope.productSales = [];
 
                 $scope.calculateSellPrice = function(productSale){
-                   return (parseInt(productSale.product.price)*(1+parseFloat(productSale.product.profit))).toFixed(2);
+                   return (parseInt(productSale.product.price)*(1+parseFloat(productSale.product.profit)/100)).toFixed(2);
                 };
                 appScope.calculateItemTotal = function (productSale) {
-                    return (parseInt(productSale.product.price)*(1+parseFloat(productSale.product.profit))*parseInt(productSale.quantity)).toFixed(2);
+                    return (parseInt(productSale.product.price)*(1+parseFloat(productSale.product.profit)/100)*parseInt(productSale.quantity)).toFixed(2);
                 };
                 appScope.calculateWeightTotal = function (productSale) {
                     return (parseFloat(productSale.product.weight)*parseInt(productSale.quantity)).toFixed(2);
@@ -72,7 +127,7 @@ $(document).ready(function () {
                     var total =  0;
                     for(i=0;i<appScope.productSales.length;i++){
                         productSale = appScope.productSales[i];
-                        total +=(parseInt(productSale.product.price)*(1+parseFloat(productSale.product.profit))*parseInt(productSale.quantity));
+                        total +=(parseInt(productSale.product.price)*(1+parseFloat(productSale.product.profit)/100)*parseInt(productSale.quantity));
                     }
                     if (total==null) total = 0;
                     else total = parseFloat(total);

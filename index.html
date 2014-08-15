@@ -20,6 +20,8 @@
     <link rel="stylesheet" type="text/css" href="resources/css/flatbutton.css">
 </head>
 <body ng-app="Demonstration" ng-controller="mainControler">
+    <input style="display:none;" id="customerDataPath" type="file" />
+    <input style="display:none;" id="productDataPath" type="file" />
     <div id="placeholder" style="border: none">
         <div id="inventory_general_information">
             <table id="inventory_customer_information">
@@ -66,7 +68,7 @@
                     <th style="width: 10%">ID</th>
                     <th style="width: 40%">Description</th>
                     <th style="width: 10%">Purchase price</th>
-                    <th style="width: 10%">Profit</th>
+                    <th style="width: 10%">Profit (%)</th>
                     <th style="width: 10%">Saleprice</th>
                     <th style="width: 10%">Quantity</th>
                     <th style="width: 10%">Total</th>
@@ -84,12 +86,12 @@
             <tr ng-repeat="productSale in productSales">
                 <td><a class="cut" ng-click="removeProduct(productSale)">-</a>{{productSale.product.id}}</td>
                 <td><span contenteditable id="productDescription_{{$index}}"  ng-model="productSale.product.name" ng-keyup="productInformationKeyUp(productSale,'name')" ></span> </td>
-                <td>{{productSale.product.price}}</td>
-                <td><span contenteditable type="text" ng-model="productSale.product.profit" style="border: none;width: 100%;" /></td>
-                <td ng-bind="calculateSellPrice(productSale)">
+                <td style="text-align: center">{{productSale.product.price}}</td>
+                <td><span id="productProfit_{{$index }}" onkeypress="allowNumbericWithDecimalSpan()" contenteditable type="text" ng-model="productSale.product.profit" style="border: none;width: 100%;text-align: center" ></span></td>
+                <td style="text-align: center" ng-bind="calculateSellPrice(productSale)">
                 </td>
                 <td><span id="productQuantity_{{$index }}" contenteditable ng-model="productSale.quantity"/></td>
-                <td ng-bind="calculateItemTotal(productSale)"></td>
+                <td style="text-align: center" ng-bind="calculateItemTotal(productSale)"></td>
             </tr>
         </table>
         <table id="action_table">

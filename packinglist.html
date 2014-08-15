@@ -76,7 +76,7 @@
         </tr>
           <tr ng-repeat="productSale in productSales">
               <td><a class="cut">-</a>
-                  <input  id="productQuantity_{{$index }}" ng-model="productSale.quantity" class="numberinput" type="text" min="1" style="width:98%;border:0px;text-align:center" />
+                  <input  id="productQuantity_{{$index }}" ng-model="productSale.quantity" class="numberinput" type="text" min="1" style="width:97%;border:0px;text-align:center" />
               </td>
               <td><input  id="productDescription_{{$index }}" ng-model="productSale.product.name" class="information_td_description" type="text" style="width:98%;border:0px;text-align:center" /></td>
               <td ng-bind="productSale.product.weight">

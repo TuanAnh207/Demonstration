@@ -12,7 +12,7 @@
 
     *[contenteditable]:hover, *[contenteditable]:focus, td:hover *[contenteditable], td:focus *[contenteditable], img.hover { background: #DEF; box-shadow: 0 0 1em 0.5em #DEF; }
 
-    span[contenteditable] { display: inline-block;width: 100% }
+    span[contenteditable] { display: inline-block;width: 100%;text-align: center }
     body{
         padding: 20px 20px 20px 20px;
     }
